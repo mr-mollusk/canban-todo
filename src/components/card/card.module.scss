@@ -1,0 +1,36 @@
+.card {
+  &__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+  }
+  &__wrapper {
+    background: #fff;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80vw;
+    height: 80vh;
+    border-radius: 20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__header {
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+  }
+  &__body {
+    flex: 1 1 auto;
+  }
+  &__button {
+    border: none;
+    background: none;
+  }
+}
