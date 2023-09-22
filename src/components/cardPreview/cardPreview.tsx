@@ -16,9 +16,10 @@ export const CardPreview: React.FC<ICardPreview> = ({ id, title }) => {
 
   return (
     <>
-      <button onClick={onOpen} className={s.trigger}>
+      <div onClick={onOpen} className={s.trigger}>
         <h3>{title}</h3>
-      </button>
+      </div>
+
       <Card isOpen={isOpen} onClose={onClose} />
     </>
   );

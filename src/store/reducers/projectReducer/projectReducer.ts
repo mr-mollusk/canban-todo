@@ -15,7 +15,8 @@ export const projectReducer = (
   action: ProjectAction
 ): ProjectState => {
   switch (action.type) {
-    case ProjectActionTypes.get_tasks: {
+    case ProjectActionTypes.set_tasks: {
+      
       return { ...state, tasks: [...action.payload] };
     }
     default: {
