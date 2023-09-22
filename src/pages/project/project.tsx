@@ -25,34 +25,37 @@ export const Project: React.FC = () => {
   // }, [tasks]);
   const handleOnDragEnd = (result: any) => {
     const { destination, source } = result;
-    const sourceId = source.droppableId;
-    const destinationId = destination.droppableId;
-    const id = result.draggableId.at(-1);
+
     if (!destination) {
       return;
     }
+    const sourceId = source.droppableId;
+    const destinationId = destination.droppableId;
     const currentCard = state.find(
       ({ group }) => group.toLowerCase() === sourceId
     )?.items[source.index];
 
     console.log(currentCard);
-
     const newState = state.map(({ group, items }) => {
-      if (group.toLowerCase() === sourceId) {
+      if (sourceId !== destinationId) {
+        if (group.toLowerCase() === sourceId) {
+          items.splice(source.index, 1);
+          return { group: group, items: items };
+        }
+        if (group.toLowerCase() === destinationId && currentCard) {
+          items.splice(destination.index, 0, currentCard);
+          return {
+            group: group,
+            items: items,
+          };
+        }
+      } else if (group.toLowerCase() === sourceId && currentCard) {
         items.splice(source.index, 1);
-        return { group: group, items: items };
-      }
-      if (group.toLowerCase() === destinationId && currentCard) {
         items.splice(destination.index, 0, currentCard);
-        return {
-          group: group,
-          items: items,
-        };
+        return { group: group, items: items };
       }
       return { group: group, items: items };
     });
-
-    console.log(newState);
 
     setState(newState);
   };
