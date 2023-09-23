@@ -29,6 +29,7 @@ export const Project: React.FC = () => {
     if (!destination) {
       return;
     }
+    
     const sourceId = source.droppableId;
     const destinationId = destination.droppableId;
     const currentCard = state.find(
