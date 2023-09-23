@@ -1,7 +1,7 @@
-import { ITask } from "./task";
+import { ICardsGroup, ITask } from "./task";
 
 export interface IProject {
   id: number;
   title: string;
-  tasks: Array<ITask>;
+  tasks: Array<ICardsGroup>;
 }

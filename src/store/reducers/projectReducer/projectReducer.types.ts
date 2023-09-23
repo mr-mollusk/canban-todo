@@ -1,4 +1,4 @@
-import { IProject, ITask } from "../../../models";
+import { ICardsGroup, IProject, ITask } from "../../../models";
 
 export interface ProjectState extends IProject {}
 
@@ -11,7 +11,7 @@ interface GetAllProjectTasksAction {
 }
 interface SetTasksAction {
   type: ProjectActionTypes.set_tasks;
-  payload: Array<ITask>;
+  payload: Array<ICardsGroup>;
 }
 
 export type ProjectAction = GetAllProjectTasksAction | SetTasksAction;

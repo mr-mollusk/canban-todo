@@ -6,6 +6,7 @@ export type AvaliableTasksStatuses = "queue" | "development" | "done";
 
 export interface ITask {
   id: number;
+  index: number;
   title: string;
   description?: string;
   creationTime: Date;
@@ -16,4 +17,9 @@ export interface ITask {
   status: AvaliableTasksStatuses;
   subtasks?: Array<TaskId>;
   comments?: Array<IComment>;
+}
+
+export interface ICardsGroup {
+  group: string;
+  items: Array<ITask>;
 }

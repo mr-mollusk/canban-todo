@@ -2,8 +2,46 @@ import { ICardList } from "./cardList.types";
 import s from "./cardList.module.scss";
 import { CardPreview } from "../cardPreview/cardPreview";
 import { Droppable } from "react-beautiful-dnd";
+import {
+  ChangeEvent,
+  KeyboardEventHandler,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
+import { createNewCard } from "../../api";
+import { getAllProjectTasksAction, useAppDispatch } from "../../store";
 
 export const CardList: React.FC<ICardList> = ({ title, cards }) => {
+  const [newCard, setNewCard] = useState(false);
+  const [inputValue, setInputValue] = useState("");
+  const inputRef = useRef<HTMLInputElement>(null);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, [newCard]);
+
+  const handleAddNewCard = () => {
+    setNewCard(true);
+  };
+  const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setInputValue(e.target.value);
+  };
+  const handleOnEnterDown: KeyboardEventHandler<HTMLInputElement> = async (
+    e
+  ) => {
+    if (e.key === "Enter") {
+      if (inputValue !== "") {
+        const data = await createNewCard(2, inputValue, "Queue");
+        if (data) {
+          dispatch(getAllProjectTasksAction());
+        }
+      }
+      setInputValue("");
+      setNewCard(false);
+    }
+  };
   return (
     <div className={s.cardlist}>
       <h2>{title}</h2>
@@ -21,6 +59,23 @@ export const CardList: React.FC<ICardList> = ({ title, cards }) => {
           </div>
         )}
       </Droppable>
+      {newCard ? (
+        <div className={s.placeholder}>
+          <input
+            className={s.placeholder__input}
+            onChange={handleOnChange}
+            onKeyDown={handleOnEnterDown}
+            value={inputValue}
+            ref={inputRef}
+          />
+        </div>
+      ) : (
+        title === "Queue" && (
+          <button onClick={handleAddNewCard} className={s.button}>
+            Добавить карточку
+          </button>
+        )
+      )}
     </div>
   );
 };

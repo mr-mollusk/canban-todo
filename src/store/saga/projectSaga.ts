@@ -1,9 +1,10 @@
 import { put, takeEvery, call, all, fork } from "redux-saga/effects";
 import { api } from "../../api";
-import { ITask } from "../../models";
+import { ICardsGroup, ITask } from "../../models";
 import { ProjectActionTypes, setTasksAction } from "../reducers";
 
-const fetchTasksFromApi = (): Promise<ITask[]> => api.get("/projects/2/todos");
+const fetchTasksFromApi = (): Promise<ICardsGroup[]> =>
+  api.get("/projects/2/todos-by-group");
 
 function* fetchTasksWorker() {
   const { data } = yield call(fetchTasksFromApi);

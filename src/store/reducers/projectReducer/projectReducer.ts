@@ -7,7 +7,11 @@ import {
 const initialState: ProjectState = {
   id: 0,
   title: "",
-  tasks: [],
+  tasks: [
+    { group: "", items: [] },
+    { group: "", items: [] },
+    { group: "", items: [] },
+  ],
 };
 
 export const projectReducer = (
@@ -16,7 +20,6 @@ export const projectReducer = (
 ): ProjectState => {
   switch (action.type) {
     case ProjectActionTypes.set_tasks: {
-      
       return { ...state, tasks: [...action.payload] };
     }
     default: {

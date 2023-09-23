@@ -11,3 +11,49 @@
     flex-direction: column;
   }
 }
+
+.placeholder {
+  margin-top: 10px;
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 2px 2px 6px 0px rgba(34, 60, 80, 0.1);
+  -moz-box-shadow: 2px 2px 6px 0px rgba(34, 60, 80, 0.1);
+  box-shadow: 2px 2px 6px 0px rgba(34, 60, 80, 0.1);
+  width: 260px;
+  border-radius: 10px;
+  text-align: left;
+  padding: 5px 20px;
+  cursor: pointer;
+  &:not(:last-child) {
+    margin-bottom: 10px;
+  }
+  &:hover {
+    background: rgba(0, 0, 0, 0.05);
+  }
+
+  &__input {
+    width: 100%;
+    border: none;
+    padding: 2px;
+    &:focus {
+      outline: none;
+      border: none;
+    }
+  }
+}
+
+.button {
+  margin-top: 10px;
+  border-radius: 10px;
+  padding: 10px;
+  font-weight: 700;
+  border: none;
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 2px 2px 6px 0px rgba(34, 60, 80, 0.1);
+  -moz-box-shadow: 2px 2px 6px 0px rgba(34, 60, 80, 0.1);
+  box-shadow: 2px 2px 6px 0px rgba(34, 60, 80, 0.1);
+  &:hover {
+    background: rgba(0, 0, 0, 0.05);
+  }
+}

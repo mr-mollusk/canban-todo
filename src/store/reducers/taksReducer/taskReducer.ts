@@ -2,6 +2,7 @@ import { TaskAction, TaskActionTypes, TaskState } from "./taskReducer.types";
 
 const initialState: TaskState = {
   id: 0,
+  index: 0,
   title: "1",
   description: "",
   priority: undefined,
@@ -14,7 +15,10 @@ const initialState: TaskState = {
   comments: [],
 };
 
-export const taskReducer = (state = initialState, action: TaskAction): TaskState => {
+export const taskReducer = (
+  state = initialState,
+  action: TaskAction
+): TaskState => {
   switch (action.type) {
     case TaskActionTypes.get_task: {
       return { ...action.payload };

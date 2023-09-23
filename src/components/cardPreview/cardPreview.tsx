@@ -31,7 +31,7 @@ export const CardPreview: React.FC<ICardPreview> = ({ id, title, index }) => {
         )}
       </Draggable>
 
-      <Card isOpen={isOpen} onClose={onClose} />
+      {isOpen && <Card isOpen={isOpen} onClose={onClose} id={id} />}
     </>
   );
 };

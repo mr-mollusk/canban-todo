@@ -1,11 +1,16 @@
-import { useState } from "react";
+import { useEffect } from "react";
 import { Modal } from "../modal";
 import s from "./card.module.scss";
 import { useAppSelector } from "../../store/hooks/useAppSelector";
 import { ICard } from "./card.types";
+import { getTaskByIdAction, useAppDispatch } from "../../store";
 
-export const Card: React.FC<ICard> = ({ isOpen, onClose }) => {
+export const Card: React.FC<ICard> = ({ id, isOpen, onClose }) => {
   const taskState = useAppSelector((state) => state.task);
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    if (isOpen) dispatch(getTaskByIdAction(id));
+  }, [isOpen]);
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
@@ -21,11 +26,17 @@ export const Card: React.FC<ICard> = ({ isOpen, onClose }) => {
           <div className={s.card__body}>
             <div>
               <h2>Описание:</h2>
-              <p>{taskState.description}</p>
+              {taskState.description ? (
+                <p>{taskState.description}</p>
+              ) : (
+                <p>Добавьте описание</p>
+              )}
             </div>
-            <div>
-              <h2>Комментарии:</h2>
-            </div>
+            {taskState.comments?.length && (
+              <div>
+                <h2>Комментарии:</h2>
+              </div>
+            )}
           </div>
         </div>
       </div>

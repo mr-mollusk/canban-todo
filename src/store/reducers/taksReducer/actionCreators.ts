@@ -1,5 +1,5 @@
 import { ITask } from "../../../models";
-import { TaskActionTypes } from "./taskReducer.types";
+import { TaskAction, TaskActionTypes } from "./taskReducer.types";
 
 export const getTaskAction = (data: ITask) => ({
   type: TaskActionTypes.get_task,
@@ -8,4 +8,8 @@ export const getTaskAction = (data: ITask) => ({
 export const setTaskTitleAction = (title: string) => ({
   type: TaskActionTypes.set_title,
   payload: title,
+});
+export const getTaskByIdAction = (id: number): TaskAction => ({
+  type: TaskActionTypes.get_task_by_id,
+  payload: id,
 });
