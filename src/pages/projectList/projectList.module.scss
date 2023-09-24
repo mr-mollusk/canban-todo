@@ -1,31 +1,28 @@
-.project {
+.list {
   &__wrapper {
+    padding-top: 50px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
-    :not(:last-child) {
-      margin-right: 20px;
-    }
   }
-  &__content {
-    display: flex;
-    justify-content: center;
-  }
-  &__backlink {
-    padding: 10px 0;
+  &__item {
+    padding: 10px 30px;
     border-radius: 10px;
     min-width: 330px;
     border: 1px solid rgba(0, 0, 0, 0.1);
-    box-shadow: 2px 2px 6px 0px rgba(34, 60, 80, 0.1);
     -webkit-box-shadow: 2px 2px 6px 0px rgba(34, 60, 80, 0.1);
     -moz-box-shadow: 2px 2px 6px 0px rgba(34, 60, 80, 0.1);
-    display: flex;
-    justify-content: center;
-    text-decoration: none;
-    color: black;
+    box-shadow: 2px 2px 6px 0px rgba(34, 60, 80, 0.1);
+
     &:hover {
       background: rgba(0, 0, 0, 0.05);
+    }
+  }
+  &__link {
+    text-decoration: none;
+    color: black;
+    &:not(:last-child) {
+      margin-bottom: 20px;
     }
   }
 }

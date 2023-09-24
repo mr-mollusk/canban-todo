@@ -1,11 +1,18 @@
 import { applyMiddleware, combineReducers, createStore } from "redux";
-import { taskReducer, projectReducer } from "./reducers";
+import {
+  taskReducer,
+  projectReducer,
+  workspaceReducer,
+  commentsReducer,
+} from "./reducers";
 import createSagaMiddleware from "redux-saga";
 import rootSaga from "./saga";
 
 const rootReducer = combineReducers({
   task: taskReducer,
   project: projectReducer,
+  workspace: workspaceReducer,
+  comment: commentsReducer,
 });
 
 const sagaMiddleware = createSagaMiddleware();

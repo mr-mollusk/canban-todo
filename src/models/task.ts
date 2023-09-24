@@ -9,9 +9,9 @@ export interface ITask {
   index: number;
   title: string;
   description?: string;
-  creationTime: Date;
+  createdDate: string;
   durationInSeconds: number;
-  endTime?: Date;
+  endTime?: string;
   priority?: AvaliableTasksPriorities;
   attached?: Array<string>;
   status: AvaliableTasksStatuses;

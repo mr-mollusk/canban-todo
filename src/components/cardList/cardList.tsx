@@ -11,12 +11,14 @@ import {
 } from "react";
 import { createNewCard } from "../../api";
 import { getAllProjectTasksAction, useAppDispatch } from "../../store";
+import { useParams } from "react-router-dom";
 
 export const CardList: React.FC<ICardList> = ({ title, cards }) => {
   const [newCard, setNewCard] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
   const dispatch = useAppDispatch();
+  const { projectId } = useParams();
 
   useEffect(() => {
     inputRef.current?.focus();
@@ -32,10 +34,10 @@ export const CardList: React.FC<ICardList> = ({ title, cards }) => {
     e
   ) => {
     if (e.key === "Enter") {
-      if (inputValue !== "") {
-        const data = await createNewCard(2, inputValue, "Queue");
-        if (data) {
-          dispatch(getAllProjectTasksAction());
+      if (inputValue !== "" && projectId) {
+        const data = await createNewCard(+projectId, inputValue, "Queue");
+        if (data && projectId) {
+          dispatch(getAllProjectTasksAction(+projectId));
         }
       }
       setInputValue("");

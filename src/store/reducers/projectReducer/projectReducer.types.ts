@@ -8,6 +8,7 @@ export enum ProjectActionTypes {
 }
 interface GetAllProjectTasksAction {
   type: ProjectActionTypes.get_tasks;
+  payload: number;
 }
 interface SetTasksAction {
   type: ProjectActionTypes.set_tasks;

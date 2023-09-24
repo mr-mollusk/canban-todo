@@ -3,11 +3,11 @@ import { api } from "../../api";
 import { ICardsGroup, ITask } from "../../models";
 import { ProjectActionTypes, setTasksAction } from "../reducers";
 
-const fetchTasksFromApi = (): Promise<ICardsGroup[]> =>
-  api.get("/projects/2/todos-by-group");
+const fetchTasksFromApi = (id: number): Promise<ICardsGroup[]> =>
+  api.get(`/projects/${id}/todos-by-group`);
 
-function* fetchTasksWorker() {
-  const { data } = yield call(fetchTasksFromApi);
+function* fetchTasksWorker(action: any) {
+  const { data } = yield call(fetchTasksFromApi, action.payload);
   yield put(setTasksAction(data));
 }
 

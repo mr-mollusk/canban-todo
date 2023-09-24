@@ -7,16 +7,16 @@ import {
 } from "../../store";
 import { CardList } from "../../components";
 import s from "./project.module.scss";
-import { ICardsGroup, cardsMock } from "../../mock";
 import { setNewCardsOrderForProject } from "../../api";
 import { ITask } from "../../models";
+import { Link, useParams } from "react-router-dom";
 
 export const Project: React.FC = () => {
   const { tasks } = useAppSelector((state) => state.project);
-  // const [state, setState] = useState<ICardsGroup[]>(cardsMock);
+  const { projectId } = useParams();
   const dispatch = useAppDispatch();
   useEffect(() => {
-    dispatch(getAllProjectTasksAction());
+    if (projectId) dispatch(getAllProjectTasksAction(+projectId));
   }, []);
 
   const handleOnDragEnd = (result: any) => {
@@ -64,14 +64,19 @@ export const Project: React.FC = () => {
   const sortByIndex = (a: ITask, b: ITask) => a.index - b.index;
   return (
     <div className={s.project__wrapper}>
-      <DragDropContext onDragEnd={handleOnDragEnd}>
-        <CardList title="Queue" cards={tasks[0].items.sort(sortByIndex)} />
-        <CardList
-          title="Development"
-          cards={tasks[1].items.sort(sortByIndex)}
-        />
-        <CardList title="Done" cards={tasks[2].items.sort(sortByIndex)} />
-      </DragDropContext>
+      <Link to={"/"} className={s.project__backlink}>
+        <h3>Back to main</h3>
+      </Link>
+      <div className={s.project__content}>
+        <DragDropContext onDragEnd={handleOnDragEnd}>
+          <CardList title="Queue" cards={tasks[0].items.sort(sortByIndex)} />
+          <CardList
+            title="Development"
+            cards={tasks[1].items.sort(sortByIndex)}
+          />
+          <CardList title="Done" cards={tasks[2].items.sort(sortByIndex)} />
+        </DragDropContext>
+      </div>
     </div>
   );
 };
